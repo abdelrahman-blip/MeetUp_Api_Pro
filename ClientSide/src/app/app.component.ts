@@ -21,6 +21,12 @@ export class AppComponent {
   private http = inject(HttpClient);
   constructor(){
     this.http.get('https://localhost:5001/Api/Users')
-    .subscribe(data => this.users = data);
+    .subscribe
+    ({
+      next : response => this.users = response,
+      error : error =>  console.error(error),
+      complete : () => console.log('request completed')
+      
+    });
   }
 }
